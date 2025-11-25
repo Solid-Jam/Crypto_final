@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.get('/', response_model=List[User])
-def get_users():
+def get_users(_: str = Depends(get_api_key)):
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -21,7 +21,7 @@ def get_users():
 
 
 @router.post('/', response_model=User)
-def create_user(user: UserCreate, _: str = Depends(get_api_key)):
+def create_user(user: UserCreate):   # <-- API KEY REMOVED HERE
     conn = get_db_connection()
     cursor = conn.cursor()
 
