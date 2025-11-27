@@ -3,7 +3,6 @@ from database import get_db_connection
 import sqlite3
 from database import create_database
 
-# Ensure DB and tables exist before doing anything
 create_database()
 
 
@@ -72,9 +71,6 @@ def delete_asset_from_db(asset_id: int):
     return affected > 0
 
 
-# ----------------------
-# Authentication helpers
-# ----------------------
 
 def login(username: str, password: str) -> bool:
     conn = get_db_connection()
@@ -243,3 +239,4 @@ elif page == "Assets":
                 add_asset_to_db(a_name, a_symbol, a_type, price_f)
                 st.success("Asset added")
                 st.rerun()
+
